@@ -1,0 +1,34 @@
+{
+  "editor.cursorBlinking": "phase",
+  "editor.fontFamily": "FiraCode Nerd Font Mono",
+  "editor.fontLigatures": true,
+  "editor.cursorSmoothCaretAnimation": "on",
+  "security.workspace.trust.untrustedFiles": "open",
+  "files.exclude": {
+    "**/*.meta": true
+  },
+  "editor.bracketPairColorization.enabled": true,
+  "editor.formatOnSave": true,
+  "workbench.iconTheme": "material-icon-theme",
+  "terminal.integrated.fontFamily": "'FiraCode Nerd Font Mono'",
+  "git.autofetch": true,
+  "workbench.colorTheme": "Tokyo Night Horizon",
+  "vscode_vibrancy.theme": "Tokyo Night Storm",
+  "vscode_vibrancy.opacity": -0.2,
+  "editor.wordWrap": "bounded",
+  "editor.tabSize": 2,
+  "terminal.integrated.gpuAcceleration": "on",
+  "terminal.external.windowsExec": "C:\\Windows\\System32\\wt.exe",
+  "terminal.integrated.profiles.windows": {
+    "Windows PowerShell": {
+      "path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+    }
+  },
+  "terminal.integrated.defaultProfile.windows": "Windows PowerShell",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.semi": false,
+  "window.titleBarStyle": "custom",
+  "codesnap.realLineNumbers": true,
+  "codesnap.shutterAction": "copy",
+  "codesnap.transparentBackground": true
+}
