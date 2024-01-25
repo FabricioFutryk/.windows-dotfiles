@@ -1,9 +1,9 @@
 # Windows Dotfiles
 
-> [!IMPORTANT] Requirements
+> [!IMPORTANT]
 > **Windows 11** is required. A clean installation is recommended.
 
-> [!WARNING] Work In Progress
+> [!WARNING]
 > The scripts and configurations are under ongoing development, and some features may not be fully tested. Use with caution.
 
 ## Features
