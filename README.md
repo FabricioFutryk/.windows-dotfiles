@@ -38,7 +38,7 @@ If you prefer a quick setup without manually downloading the repository, use the
    Open a PowerShell or Windows Terminal as an administrator and execute the following command:
 
 ```ps1
-Set-ExecutionPolicy Bypass;Invoke-WebRequest https://raw.githubusercontent.com/belseir/.windows-dotfiles/main/bootstrap.ps1 | Invoke-Expression
+Set-ExecutionPolicy Bypass -Scope Process -Force;Invoke-WebRequest https://raw.githubusercontent.com/belseir/.windows-dotfiles/main/bootstrap.ps1 | Invoke-Expression
 ```
 
 > [!NOTE]
@@ -55,7 +55,7 @@ Set-ExecutionPolicy Bypass;Invoke-WebRequest https://raw.githubusercontent.com/b
    Open a PowerShell or Windows Terminal as an administrator in the directory where the files were extracted. Execute the following command:
 
 ```ps1
-Set-ExecutionPolicy Bypass;Invoke-Expression "$HOME\.windows-dotfiles\install.ps1"
+Set-ExecutionPolicy Bypass -Scope Process -Force;Invoke-Expression "$HOME\.windows-dotfiles\install.ps1"
 ```
 
 ## Credits
