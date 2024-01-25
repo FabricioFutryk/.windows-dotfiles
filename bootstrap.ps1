@@ -14,4 +14,4 @@ Rename-Item `
   -Path "$HOME\.windows-dotfiles-main" `
   -Force
 
-Invoke-Expression "$HOME\.windows-dotfiles\Installation.ps1"
+Invoke-Expression "$HOME\.windows-dotfiles\install.ps1"
