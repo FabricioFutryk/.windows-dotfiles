@@ -40,6 +40,18 @@ function DownloadAndExecute {
   Remove-Item $OutFile -Force
 }
 
+# .gitconfig values
+
+$email = Read-Host "Enter your Git config email"
+$name = Read-Host "Enter your Git config name"
+
+$gitConfig = Get-Content ".gitconfig" -Raw
+
+$gitConfig = $gitConfig -replace '<YOUR_EMAIL>', "$email"
+$gitConfig= $gitConfig -replace '<YOUR_NAME>', "$name"
+
+$gitConfig | Set-Content ".gitconfig"
+
 ##################################################################
 ## Windows Activation (massgravel/Microsoft-Activation-Scripts) ##
 ##################################################################
