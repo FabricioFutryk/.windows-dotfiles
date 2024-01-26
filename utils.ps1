@@ -32,7 +32,8 @@ function DownloadAndExecute {
     Start-Process `
       -FilePath $OutFile `
       -ArgumentList $ArgumentList `
-      -Wait
+      -Wait `
+      -WindowStyle Hidden
   } else {
     Invoke-Expression "$OutFile $ArgumentList"
   }
