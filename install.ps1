@@ -82,6 +82,8 @@ Get-ChildItem `
 
 Invoke-Expression "$env:TEMP\Win-Debloat-Tools-main\WinDebloatTools.ps1 CLI"
 
+Set-Location "$HOME\.windows-dotfiles\"
+
 ####################
 ## Terminal Setup ##
 ####################
