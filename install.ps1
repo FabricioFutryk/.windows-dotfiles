@@ -1,5 +1,19 @@
 ﻿Import-Module "$HOME\.windows-dotfiles\utils.ps1"
 
+$dotfilesFolder = "$HOME\.windows-dotfiles"
+
+$urls = @{
+  hwidActivator = "https://raw.githubusercontent.com/massgravel/Microsoft-Activation-Scripts/master/MAS/Separate-Files-Version/Activators/HWID_Activation.cmd"
+  debloater = "https://github.com/LeDragoX/Win-Debloat-Tools/archive/main.zip"
+  fonts = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/FiraCode.zip"
+  ohMyPosh = "https://ohmyposh.dev/install.ps1"
+  chocolatey = "https://community.chocolatey.org/install.ps1"
+  dotnet = "https://dot.net/v1/dotnet-install.ps1"
+  rawAccel = "https://github.com/a1xd/rawaccel/releases/download/v1.6.1/RawAccel_v1.6.1.zip"
+}
+
+$fontName = "FiraCodeNerdFontMono-*.ttf"
+
 # .gitconfig values
 
 $email = Read-Host "Enter your Git config email"
@@ -7,8 +21,9 @@ $name = Read-Host "Enter your Git config name"
 
 $gitConfig = Get-Content ".gitconfig" -Raw
 
-$gitConfig = $gitConfig -replace '<YOUR_EMAIL>', "$email"
-$gitConfig= $gitConfig -replace '<YOUR_NAME>', "$name"
+$gitConfig = $gitConfig `
+  -replace '<YOUR_EMAIL>', "$email" `
+  -replace '<YOUR_NAME>', "$name"
 
 $gitConfig | Set-Content ".gitconfig"
 
@@ -16,11 +31,8 @@ $gitConfig | Set-Content ".gitconfig"
 ## Windows Activation (massgravel/Microsoft-Activation-Scripts) ##
 ##################################################################
 
-
-$hwidActivatorURL = 'https://raw.githubusercontent.com/massgravel/Microsoft-Activation-Scripts/master/MAS/Separate-Files-Version/Activators/HWID_Activation.cmd'
-
 DownloadAndExecute `
-  -Url $hwidActivatorURL `
+  -Url $urls.hwidActivator `
   -OutFile "$env:TEMP\HWID_Activation.cmd" `
   -ArgumentList "/HWID"
 
@@ -28,10 +40,8 @@ DownloadAndExecute `
 ## Windows Debloat (LeDragoX/Win-Debloat-Tools) ##
 ##################################################
 
-$debloaterUrl = "https://github.com/LeDragoX/Win-Debloat-Tools/archive/main.zip"
-
 DownloadAndExtract `
-  -Url $debloaterUrl `
+  -Url $urls.debloater `
   -OutFile "$env:TEMP\debloater.zip" `
   -DestinationPath "$env:TEMP"
 
@@ -41,9 +51,14 @@ Get-ChildItem `
   -Recurse *.ps*1 `
   | Unblock-File
 
-Invoke-Expression "$env:TEMP\Win-Debloat-Tools-main\WinDebloatTools.ps1 CLI"
+Invoke-Item ( 
+  Start-Process powershell `
+    "$env:TEMP\Win-Debloat-Tools-main\WinDebloatTools.ps1 CLI" `
+    -Wait `
+    -WindowStyle Minimized
+)
 
-Set-Location "$HOME\.windows-dotfiles\"
+Set-Location $dotfilesFolder
 
 ####################
 ## Terminal Setup ##
@@ -51,17 +66,15 @@ Set-Location "$HOME\.windows-dotfiles\"
 
 New-Item -Force -ItemType SymbolicLink `
   -Path "$HOME\Documents\WindowsPowerShell" `
-  -Target "$HOME\.windows-dotfiles\WindowsPowerShell" 
+  -Target "$dotfilesFolder\WindowsPowerShell" 
 
 # Font Installation 
-
-$fontUrl = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/FiraCode.zip"
 
 $fontsFile = "$env:TEMP\FiraCode.zip"
 $fonts = "$env:TEMP\FiraCode"
 
 DownloadAndExtract `
-  -Url $fontUrl `
+  -Url $urls.fonts `
   -OutFile $fontsFile `
   -DestinationPath $fonts
 
@@ -69,7 +82,7 @@ DownloadAndExtract `
 
 $destination = (New-Object -ComObject Shell.Application).Namespace(0x14)
 
-Get-ChildItem -Path $fonts -Include 'FiraCodeNerdFontMono-*.ttf' -Recurse | ForEach-Object {
+Get-ChildItem -Path $fonts -Include $fontName -Recurse | ForEach-Object {
     If (-not(Test-Path "C:\Windows\Fonts\$($_.Name)")) {
     $destination.CopyHere("$fonts\$($_.Name)",0x10)
   }
@@ -83,7 +96,7 @@ Remove-Item `
 # Install Oh-My-Posh
 
 Invoke-WebRequest `
-  -Uri "https://ohmyposh.dev/install.ps1" `
+  -Uri $urls.ohMyPosh `
   | Invoke-Expression
 
 # Install Terminal Icons
@@ -105,17 +118,23 @@ Install-Module `
 
 # Install Chocolatey
 
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072 
+
 Invoke-WebRequest `
-  -Uri "https://community.chocolatey.org/install.ps1" `
-  | Invoke-Expression
+  -Uri $urls.chocolatey `
+| Invoke-Expression
 
 Invoke-Expression "choco install brave discord steam vscode winget -y"
-Invoke-Expression "winget install Microsoft.WindowsTerminal.Preview --accept-package-agreements --accept-source-agreements"
+Invoke-Expression "winget install Microsoft.WindowsTerminal.Preview
+  --accept-package-agreements 
+  --accept-source-agreements"
 
 $installTraslucentTB = $Host.UI.PromptForChoice("TraslucentTB Installation", "Do you want to install TraslucentTB?", @("&Yes", "&No"), 0)
 
 if($installTraslucentTB -eq 0) {
-  Invoke-Expression "winget install TraslucentTB --accept-package-agreements --accept-source-agreements"
+  Invoke-Expression "winget install TraslucentTB 
+    --accept-package-agreements 
+    --accept-source-agreements"
 }
 
 # Mouse Raw Acceleration 
@@ -127,17 +146,13 @@ if($installRawAccel -eq 0) {
   Invoke-Expression "winget install Microsoft.VCRedist.2015+.x64 --accept-package-agreements --accept-source-agreements"
 
   # Install .NET Framework LTS runtime
-  $dotnetUrl = "https://dot.net/v1/dotnet-install.ps1"
-
   DownloadAndExecute `
-    -Url $dotnetUrl `
+    -Url $urls.dotnet `
     -OutFile "$env:TEMP\dotnet-install.ps1" `
     -ArgumentList "-Channel LTS -Runtime dotnet"
 
-  $rawaccelURL = "https://github.com/a1xd/rawaccel/releases/download/v1.6.1/RawAccel_v1.6.1.zip"
-
   DownloadAndExtract `
-    -Url $rawaccelURL `
+    -Url $urls.rawAccel `
     -OutFile "$env:TEMP\RawAccel_v1.6.1.zip" `
     -DestinationPath "$env:ProgramFiles"
 
@@ -156,16 +171,16 @@ if($installRawAccel -eq 0) {
 
 New-Item -Force -ItemType SymbolicLink `
   -Path "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe\LocalState\settings.json" `
-  -Target "$HOME\.windows-dotfiles\.terminal\settings.json"
+  -Target "$dotfilesFolder\.terminal\settings.json"
 
 New-Item -Force -ItemType SymbolicLink `
   -Path "$HOME\AppData\Roaming\Code\User\settings.json" `
-  -Target "$HOME\.windows-dotfiles\.vscode\settings.json"
+  -Target "$dotfilesFolder\.vscode\settings.json"
 
 if($installRawAccel -eq 0) {
   New-Item -Force -ItemType SymbolicLink `
     -Path "$env:ProgramFiles\RawAccel\settings.json" `
-    -Target "$HOME\.windows-dotfiles\.rawaccel\settings.json"
+    -Target "$dotfilesFolder\.rawaccel\settings.json"
 }
 
 ####################
@@ -184,7 +199,8 @@ if($installRawAccel -eq 0) {
   Register-ScheduledTask `
     -Action $Action `
     -Trigger $Trigger `
-    -TaskName 'RawAccel Startup'
+    -TaskName 'RawAccel Startup' `
+    -Force
 }
 
 #################################
@@ -193,7 +209,7 @@ if($installRawAccel -eq 0) {
 
 #TODO: This part still needs testing
 
-Set-Location "$HOME\.windows-dotfiles"
+Set-Location $dotfilesFolder
 
 wsl --install
 
