@@ -1,34 +1,69 @@
 {
+  //  Window
+  "window.menuBarVisibility": "toggle",
+  "window.commandCenter": false,
+  "window.density.editorTabHeight": "compact",
+  "window.title": "${dirty}${rootName}",
+
+  //  Editor
   "editor.cursorBlinking": "phase",
   "editor.fontFamily": "FiraCode Nerd Font Mono",
   "editor.fontLigatures": true,
   "editor.cursorSmoothCaretAnimation": "on",
-  "security.workspace.trust.untrustedFiles": "open",
-  "files.exclude": {
-    "**/*.meta": true
-  },
   "editor.bracketPairColorization.enabled": true,
   "editor.formatOnSave": true,
-  "workbench.iconTheme": "material-icon-theme",
-  "terminal.integrated.fontFamily": "'FiraCode Nerd Font Mono'",
-  "git.autofetch": true,
-  "workbench.colorTheme": "Tokyo Night Horizon",
-  "vscode_vibrancy.theme": "Tokyo Night Storm",
-  "vscode_vibrancy.opacity": -0.2,
   "editor.wordWrap": "bounded",
   "editor.tabSize": 2,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.fontSize": 12,
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "editor.smoothScrolling": true,
+  "editor.minimap.enabled": false,
+  "editor.scrollbar.vertical": "hidden",
+  "editor.scrollbar.horizontal": "hidden",
+  "editor.overviewRulerBorder": false,
+
+  "breadcrumbs.enabled": false,
+
+  //  Workbench
+  "workbench.editor.labelFormat": "short",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.layoutControl.enabled": false,
+  "workbench.colorTheme": "Tokyo Night Horizon",
+  "workbench.activityBar.location": "top",
+
+  //  Terminal
   "terminal.integrated.gpuAcceleration": "on",
-  "terminal.external.windowsExec": "C:\\Windows\\System32\\wt.exe",
   "terminal.integrated.profiles.windows": {
     "Windows PowerShell": {
       "path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
     }
   },
   "terminal.integrated.defaultProfile.windows": "Windows PowerShell",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "prettier.semi": false,
-  "window.titleBarStyle": "custom",
+  "terminal.integrated.fontFamily": "'FiraCode Nerd Font Mono'",
+  "terminal.integrated.enableImages": true,
+  "terminal.integrated.hideOnStartup": "whenEmpty",
+
+  //  Explorer
+  "explorer.compactFolders": true,
+
+  //  Extensions
   "codesnap.realLineNumbers": true,
   "codesnap.shutterAction": "copy",
-  "codesnap.transparentBackground": true
+  "codesnap.transparentBackground": true,
+  "vscode_vibrancy.theme": "Tokyo Night Storm",
+  "vscode_vibrancy.opacity": -0.2,
+  "git.autofetch": true,
+  "prettier.semi": false,
+  "workbench.sideBar.location": "left",
+  "apc.header": {
+    "height": 32
+  },
+  "apc.stylesheet": {
+    ".editor-actions": "display: none",
+    ".sidebar > div > .title-actions": "display: none",
+    ".pane-body": "padding: 8px",
+    ".pane-header": "padding-inline: 8px !important",
+    ".composite-bar-container": "justify-content: end"
+  }
 }
