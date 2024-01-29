@@ -1,4 +1,4 @@
-﻿function DownloadAndExtract {
+﻿function Download-And-Extract {
   param(
     [string]$Url,
     [string]$OutFile,
@@ -17,7 +17,7 @@
   Remove-Item $OutFile -Force
 }
 
-function DownloadAndExecute {
+function Download-And-Execute {
   param(
     [string]$Url,
     [string]$OutFile,

@@ -31,7 +31,7 @@ $gitConfig | Set-Content ".gitconfig"
 ## Windows Activation (massgravel/Microsoft-Activation-Scripts) ##
 ##################################################################
 
-DownloadAndExecute `
+Download-And-Execute `
   -Url $urls.hwidActivator `
   -OutFile "$env:TEMP\HWID_Activation.cmd" `
   -ArgumentList "/HWID"
@@ -40,7 +40,7 @@ DownloadAndExecute `
 ## Windows Debloat (LeDragoX/Win-Debloat-Tools) ##
 ##################################################
 
-DownloadAndExtract `
+Download-And-Extract `
   -Url $urls.debloater `
   -OutFile "$env:TEMP\debloater.zip" `
   -DestinationPath "$env:TEMP"
@@ -73,7 +73,7 @@ New-Item -Force -ItemType SymbolicLink `
 $fontsFile = "$env:TEMP\FiraCode.zip"
 $fonts = "$env:TEMP\FiraCode"
 
-DownloadAndExtract `
+Download-And-Extract `
   -Url $urls.fonts `
   -OutFile $fontsFile `
   -DestinationPath $fonts
@@ -146,12 +146,12 @@ if($installRawAccel -eq 0) {
   Invoke-Expression "winget install Microsoft.VCRedist.2015+.x64 --accept-package-agreements --accept-source-agreements"
 
   # Install .NET Framework LTS runtime
-  DownloadAndExecute `
+  Download-And-Execute `
     -Url $urls.dotnet `
     -OutFile "$env:TEMP\dotnet-install.ps1" `
     -ArgumentList "-Channel LTS -Runtime dotnet"
 
-  DownloadAndExtract `
+  Download-And-Extract `
     -Url $urls.rawAccel `
     -OutFile "$env:TEMP\RawAccel_v1.6.1.zip" `
     -DestinationPath "$env:ProgramFiles"
@@ -216,7 +216,7 @@ wsl --install
 $wslUsername = wsl whoami
 
 Copy-Item `
-  -Path ".gitconfig" `
+  -Path "$dotfilesFolder\.gitconfig" `
   -Destination "\\wsl.localhost\Ubuntu\home\$wslUsername\.gitconfig"
 
 wsl -e bash $(wsl wslpath -au "install.sh")
