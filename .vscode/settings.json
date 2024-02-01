@@ -30,7 +30,10 @@
   "workbench.iconTheme": "material-icon-theme",
   "workbench.layoutControl.enabled": false,
   "workbench.colorTheme": "Tokyo Night Horizon",
-  "workbench.activityBar.location": "top",
+  "workbench.activityBar.location": "hidden",
+  "workbench.editor.showTabs": "none",
+  "workbench.sideBar.location": "left",
+  "workbench.editor.editorActionsLocation": "hidden",
 
   //  Terminal
   "terminal.integrated.gpuAcceleration": "on",
@@ -55,7 +58,6 @@
   "vscode_vibrancy.opacity": -0.2,
   "git.autofetch": true,
   "prettier.semi": false,
-  "workbench.sideBar.location": "left",
   "apc.header": {
     "height": 32
   },
