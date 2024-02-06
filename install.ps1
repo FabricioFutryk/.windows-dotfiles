@@ -207,12 +207,27 @@ if($installRawAccel -eq 0) {
 
 Set-Location $dotfilesFolder
 
-wsl --install --no-launch
+wsl --install
 
-$wslUsername = wsl whoami
+$Action = New-ScheduledTaskAction `
+  -Execute "powershell.exe" `
+  -Argument "$dotfilesFolder\wsl_setup.ps1"
 
-Copy-Item `
-  -Path "$dotfilesFolder\.gitconfig" `
-  -Destination "\\wsl.localhost\Ubuntu\home\$wslUsername\.gitconfig"
+$Trigger = New-ScheduledTaskTrigger -AtLogOn
 
-wsl -e bash $(wsl wslpath -au "install.sh")
+$Principal = New-ScheduledTaskPrincipal `
+  -UserId "NT AUTHORITY\SYSTEM" `
+  -LogonType ServiceAccount
+
+Register-ScheduledTask `
+  -Action $Action `
+  -Trigger $Trigger `
+  -Principal $Principal `
+  -TaskName 'WSL Setup' `
+  -Force
+
+$restartComputer = $Host.UI.PromptForChoice("WSL Installation", "To finish WSL Installation a restart is needed. Do you want to Restart now?", @("&Yes", "&No"), 0)
+
+if($restartComputer -eq 0) {
+  Restart-Computer
+}
