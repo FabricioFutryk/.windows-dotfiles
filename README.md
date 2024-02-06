@@ -1,7 +1,6 @@
 # Windows Dotfiles
 
-> [!IMPORTANT]
-> **Windows 11** is required. A clean installation is recommended.
+> [!IMPORTANT] > **Windows 11** is required. A clean installation is recommended.
 
 > [!WARNING]
 > The scripts and configurations are under ongoing development, and some features may not be fully tested. Use with caution.
@@ -41,7 +40,7 @@ If you prefer a quick setup without manually downloading the repository, use the
    Open a PowerShell or Windows Terminal as an administrator and execute the following command:
 
 ```ps1
-Set-ExecutionPolicy Bypass -Scope Process -Force;Invoke-WebRequest https://raw.githubusercontent.com/belseir/.windows-dotfiles/main/bootstrap.ps1 | Invoke-Expression
+Invoke-WebRequest https://raw.githubusercontent.com/belseir/.windows-dotfiles/main/bootstrap.ps1 | Invoke-Expression
 ```
 
 > [!NOTE]
@@ -58,7 +57,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force;Invoke-WebRequest https://raw.g
    Open a PowerShell or Windows Terminal as an administrator in the directory where the files were extracted. Execute the following command:
 
 ```ps1
-Set-ExecutionPolicy Bypass -Scope Process -Force;Invoke-Expression "$HOME\.windows-dotfiles\install.ps1"
+Invoke-Expression "$HOME\.windows-dotfiles\install.ps1"
 ```
 
 ## Credits
