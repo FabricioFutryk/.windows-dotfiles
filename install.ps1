@@ -211,7 +211,8 @@ wsl --install
 
 $Action = New-ScheduledTaskAction `
   -Execute "powershell.exe" `
-  -Argument "$dotfilesFolder\wsl_setup.ps1"
+  -Argument "$dotfilesFolder\wsl_setup.ps1" `
+  -ExecutionPolicy Bypass
 
 $Trigger = New-ScheduledTaskTrigger -AtLogOn
 
