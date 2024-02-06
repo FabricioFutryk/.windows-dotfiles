@@ -4,7 +4,7 @@
 > **Windows 11** is required. A clean installation is recommended.
 
 > [!WARNING]
-> The scripts and configurations are under ongoing development, and some features may not be fully tested. Use with caution.
+> The scripts and configurations are under ongoing development, and some features may not be fully tested. Use with caution. (WSL Installation needs fixing, you can install wsl manually and then run wsl_setup.ps1)
 
 ## Features
 
