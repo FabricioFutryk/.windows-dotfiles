@@ -1,11 +1,15 @@
 # Windows Dotfiles
 
-> [!IMPORTANT] > **Windows 11** is required. A clean installation is recommended.
+> [!IMPORTANT]
+> **Windows 11** is required. A clean installation is recommended.
 
 > [!WARNING]
 > The scripts and configurations are under ongoing development, and some features may not be fully tested. Use with caution.
 
 ## Features
+
+> [!NOTE]
+> After installing everything, I recommend using Win-Debloat-Tool GUI to remove OneDrive, Microsoft Edge and Xbox. I couldn't make them work properly yet
 
 - **Windows HWID Activation**
 - **Windows Debloating**
