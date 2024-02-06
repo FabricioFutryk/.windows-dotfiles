@@ -55,9 +55,10 @@ Get-ChildItem `
 
 Invoke-Item ( 
   Start-Process powershell `
-    "$env:TEMP\Win-Debloat-Tools-main\WinDebloatTools.ps1 CLI" `
-    -Wait `
-    -WindowStyle Minimized
+  "$env:TEMP\Win-Debloat-Tools-main\WinDebloatTools.ps1 CLI" `
+  -Wait `
+  -WindowStyle Minimized `
+  -WorkingDirectory "$env:TEMP\Win-Debloat-Tools-main\"
 )
 
 Set-Location $dotfilesFolder
