@@ -125,16 +125,12 @@ Invoke-WebRequest `
 | Invoke-Expression
 
 Invoke-Expression "choco install brave discord steam vscode winget -y"
-Invoke-Expression "winget install Microsoft.WindowsTerminal.Preview
-  --accept-package-agreements 
-  --accept-source-agreements"
+Invoke-Expression "winget install Microsoft.WindowsTerminal.Preview --accept-package-agreements  --accept-source-agreements"
 
 $installTraslucentTB = $Host.UI.PromptForChoice("TraslucentTB Installation", "Do you want to install TraslucentTB?", @("&Yes", "&No"), 0)
 
 if($installTraslucentTB -eq 0) {
-  Invoke-Expression "winget install TraslucentTB 
-    --accept-package-agreements 
-    --accept-source-agreements"
+  Invoke-Expression "winget install TraslucentTB --accept-package-agreements --accept-source-agreements"
 }
 
 # Mouse Raw Acceleration 
@@ -211,7 +207,7 @@ if($installRawAccel -eq 0) {
 
 Set-Location $dotfilesFolder
 
-wsl --install
+wsl --install --no-launch
 
 $wslUsername = wsl whoami
 
