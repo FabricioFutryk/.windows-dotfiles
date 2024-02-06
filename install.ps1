@@ -175,12 +175,6 @@ New-Item -Force -ItemType SymbolicLink `
   -Path "$HOME\AppData\Roaming\Code\User\settings.json" `
   -Target "$dotfilesFolder\.vscode\settings.json"
 
-if($installRawAccel -eq 0) {
-  New-Item -Force -ItemType SymbolicLink `
-    -Path "$env:ProgramFiles\RawAccel\settings.json" `
-    -Target "$dotfilesFolder\.rawaccel\settings.json"
-}
-
 ####################
 ## Task Scheduler ##
 ####################
@@ -190,7 +184,7 @@ if($installRawAccel -eq 0) {
 if($installRawAccel -eq 0) {
   $Action = New-ScheduledTaskAction `
     -Execute "$env:ProgramFiles\RawAccel\writer.exe" `
-    -Argument "$env:ProgramFiles\RawAccel\settings.json"
+    -Argument "$dotfilesFolder\.rawaccel\settings.json"
 
   $Trigger = New-ScheduledTaskTrigger -AtLogOn
 
