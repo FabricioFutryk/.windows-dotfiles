@@ -202,7 +202,7 @@ if($installRawAccel -eq 0) {
 
 Set-Location $dotfilesFolder
 
-wsl --install
+wsl --install --no-launch
 
 $Action = New-ScheduledTaskAction `
   -Execute "powershell.exe" `
