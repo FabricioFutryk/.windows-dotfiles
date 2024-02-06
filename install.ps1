@@ -130,7 +130,7 @@ Invoke-Expression "winget install Microsoft.WindowsTerminal.Preview --accept-pac
 $installTraslucentTB = $Host.UI.PromptForChoice("TraslucentTB Installation", "Do you want to install TraslucentTB?", @("&Yes", "&No"), 0)
 
 if($installTraslucentTB -eq 0) {
-  Invoke-Expression "winget install TraslucentTB --accept-package-agreements --accept-source-agreements"
+  Invoke-Expression "winget install TranslucentTB --accept-package-agreements --accept-source-agreements"
 }
 
 # Mouse Raw Acceleration 
