@@ -1,5 +1,7 @@
 ﻿Import-Module "$HOME\.windows-dotfiles\utils.ps1"
 
+Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force
+
 $dotfilesFolder = "$HOME\.windows-dotfiles"
 
 $urls = @{
