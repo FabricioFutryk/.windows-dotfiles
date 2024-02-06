@@ -2,6 +2,8 @@ Unregister-ScheduledTask `
   -TaskName "WSL Setup" `
   -Confirm:$false
 
+wsl
+
 $wslUsername = wsl whoami
 
 Copy-Item `
