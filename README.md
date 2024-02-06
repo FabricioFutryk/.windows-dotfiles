@@ -29,6 +29,9 @@
 
 You can install these dotfiles using one of the following methods:
 
+> [!IMPORTANT]
+> After the debloating step, a restart will be requested. Press "No"; another restart will be requested to finish WSL installation. Input Y/Yes on that one to restart the computer.
+
 ### Method 1: Quick Setup
 
 If you prefer a quick setup without manually downloading the repository, use the bootstrap script:
